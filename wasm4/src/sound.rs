@@ -196,7 +196,7 @@ impl Duration {
     }
 }
 
-/// Sustain time of the tone in frames (1/60th of a second), up to 255 frames
+/// Sustain time of the tone in frames
 #[derive(Clone, Copy)]
 pub struct SustainTime(pub u8);
 
@@ -220,7 +220,7 @@ impl Field<SustainTime> for Frequency {
     }
 }
 
-/// Release time of the tone in frames (1/60th of a second), up to 255 frames
+/// Release time of the tone in frames
 #[derive(Clone, Copy)]
 pub struct ReleaseTime(pub u8);
 
@@ -244,7 +244,7 @@ impl Field<ReleaseTime> for Frequency {
     }
 }
 
-/// Decay time of the tone in frames (1/60th of a second), up to 255 frames
+/// Decay time of the tone in frames
 #[derive(Clone, Copy)]
 pub struct DecayTime(pub u8);
 
@@ -268,7 +268,7 @@ impl Field<DecayTime> for Frequency {
     }
 }
 
-/// Attack time of the tone in frames (1/60th of a second), up to 255 frames
+/// Attack time of the tone in frames
 #[derive(Clone, Copy)]
 pub struct AttackTime(pub u8);
 
