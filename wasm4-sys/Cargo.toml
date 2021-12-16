@@ -1,9 +1,13 @@
 [package]
 name = "wasm4-sys"
 version = "0.0.0"
+authors = ["Daria Sukhonina <dariasukhonina@gmail.com>"]
+license = "ISC"
+repository = "https://github.com/ZetaNumbers/wasm4-rs"
+description = "Raw WASM-4 bindings for Rust, used internally wasm4-rs"
+keywords = ["wasm-4", "wasm4"]
+categories = ["external-ffi-bindings", "wasm"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-libc = "0.2.112"
+libc = "^0.2"
