@@ -1,3 +1,24 @@
+//! # Safety
+//!
+//! Many seemingly safe functions are marked unsafe.
+//! The reason for this is that the crate [`wasm4`](https://crates.io/crates/wasm4)
+//! uses them to achieve safe, idiomatic, and zero-overhead api.
+//! The major capability of that crate is being able to restrict ownership of
+//! various resources like framebuffer, sound, etc.
+//! To achieve that it implements WASM-4 api via methods on a struct like
+//! [`wasm4::sound::Resouce`](https://docs.rs/wasm4/latest/wasm4/sound/struct.Resource.html),
+//! ownership of which is restricted until you share it.
+//! As you may guess, calling [`crate::tone`] may interfere with assumptions about
+//! which sounds are playing in a code using `wasm4::sound::Resource`.
+//! Use of raw bindings usually gives little to no benefit, but is possible if you
+//! respect these assumptions described above.
+//!
+//! Some of these functions are unsafe for other reasons too, like raw memory access.
+//!
+//! However all of that assumes you or any dependency do not use any other bindings
+//! except for [`wasm4`](https://crates.io/crates/wasm4) and this [`crate`]
+//! (or uses them while respecting assumptions mentioned above, but this is discouraged).
+
 use libc::{c_char, c_void};
 
 pub const SCREEN_SIZE: u32 = 160;
