@@ -28,7 +28,7 @@ pub struct Flags(u32);
 
 impl Flags {
     pub const fn new(channel: Channel, mode: Mode) -> Self {
-        Flags((mode as u32) << 2 | (channel as u32))
+        Flags(mode as u32 | channel as u32)
     }
 
     pub const fn inner(self) -> u32 {
@@ -37,20 +37,20 @@ impl Flags {
 
     pub const fn channel(self) -> Channel {
         // SAFETY: `Channel` is `repr(u32)` and defined for every 2 bit value
-        unsafe { mem::transmute(self.0 & 0b11) }
+        unsafe { mem::transmute(self.0 & 0b0011) }
     }
 
     pub const fn mode(self) -> Mode {
         // SAFETY: `Mode` is `repr(u32)` and defined for every 2 bit value, and `Flags` holds only 4 bit values
-        unsafe { mem::transmute(self.0 >> 2) }
+        unsafe { mem::transmute(self.0 & 0b1100) }
     }
 
     pub const fn with_channel(self, value: Channel) -> Self {
-        Flags(self.0 & !0b0011 | (value as u32))
+        Flags(self.0 & !0b0011 | value as u32)
     }
 
     pub const fn with_mode(self, mode: Mode) -> Self {
-        Flags(self.0 & !0b1100 | (mode as u32) << 2)
+        Flags(self.0 & !0b1100 | mode as u32)
     }
 }
 
@@ -69,13 +69,13 @@ pub enum Channel {
 #[repr(u32)]
 pub enum Mode {
     /// 1/8
-    N1D8,
+    N1D8 = 0b0000,
     /// 1/4
-    N1D4,
+    N1D4 = 0b0100,
     /// 1/2
-    N1D2,
+    N1D2 = 0b1000,
     /// 3/4
-    N3D4,
+    N3D4 = 0b1100,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq)]
