@@ -8,6 +8,3 @@ description = "Raw WASM-4 bindings for Rust, used internally wasm4-rs"
 keywords = ["wasm-4", "wasm4"]
 categories = ["external-ffi-bindings", "wasm"]
 edition = "2021"
-
-[dependencies]
-libc = "^0.2"

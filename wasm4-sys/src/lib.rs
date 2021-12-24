@@ -19,7 +19,7 @@
 //! except for [`wasm4`](https://crates.io/crates/wasm4) and this [`crate`]
 //! (or uses them while respecting assumptions mentioned above, but this is discouraged).
 
-use libc::{c_char, c_void};
+use core::ffi::c_void;
 
 pub const SCREEN_SIZE: u32 = 160;
 
@@ -72,7 +72,7 @@ extern "C" {
     pub fn hline(x: i32, y: i32, len: u32);
     pub fn vline(x: i32, y: i32, len: u32);
 
-    pub fn text(text: *const c_char, x: i32, y: i32);
+    pub fn text(text: *const u8, x: i32, y: i32);
     pub fn textUtf8(text: *const u8, byte_length: usize, x: i32, y: i32);
     pub fn textUtf16(text: *const u16, byte_length: usize, x: i32, y: i32);
 
@@ -94,9 +94,9 @@ extern "C" {
     pub fn diskr(dest: *mut u8, size: usize) -> u32;
     pub fn diskw(src: *const u8, size: usize) -> u32;
 
-    pub fn trace(trace: *const c_char);
+    pub fn trace(trace: *const u8);
     pub fn traceUtf8(trace: *const u8, byte_length: usize);
     pub fn traceUtf16(trace: *const u16, byte_length: usize);
-    pub fn tracef(fmt: *const c_char, stack_ptr: *const c_void);
+    pub fn tracef(fmt: *const u8, stack_ptr: *const c_void);
 
 }
