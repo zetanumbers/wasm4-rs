@@ -2,5 +2,5 @@
 members = [
   "wasm4",
   "wasm4-sys",
-  "examples/count",
+  "examples/ticking",
 ]
