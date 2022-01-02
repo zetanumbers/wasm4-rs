@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.0.3 (2022-01-02)
+## Unreleased
 
 This is the first working release of `wasm4` crate! You can add this crate
 as a dependency to your cartridge's code by specifying it in Cargo.toml:
@@ -47,6 +47,10 @@ wasm4::main! { MyRuntime }
 
 Notice that this is not a library (`src/lib.rs`), but an executable (`src/main.rs`). This is done for better integration with cargo tooling, being able to run these cartriges using `cargo run`.
 
+### Bug Fixes
+
+ - <csr-id-74390f243edfeab213bc40e2ed7b12f008f1efec/> copy example's source into wasm4 docs
+
 ### Documentation
 
  - <csr-id-7b490feace43670f3f2100595ab6f0a1ee988d62/> add changelog for `wasm4`
@@ -63,8 +67,8 @@ Notice that this is not a library (`src/lib.rs`), but an executable (`src/main.r
 
 <csr-read-only-do-not-edit/>
 
- - 11 commits contributed to the release over the course of 18 calendar days.
- - 5 commits where understood as [conventional](https://www.conventionalcommits.org).
+ - 13 commits contributed to the release over the course of 18 calendar days.
+ - 6 commits where understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' where seen in commit messages
 
 ### Commit Details
@@ -74,6 +78,8 @@ Notice that this is not a library (`src/lib.rs`), but an executable (`src/main.r
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - copy example's source into wasm4 docs ([`74390f2`](https://github.com/ZetaNumbers/wasm4-rs/commit/74390f243edfeab213bc40e2ed7b12f008f1efec))
+    - Release wasm4-sys v0.1.0, wasm4 v0.0.3 ([`9a8c498`](https://github.com/ZetaNumbers/wasm4-rs/commit/9a8c498c6ebff2e2a2520a74defaf407fc39f36f))
     - regenerate and adjust changelog ([`ceaee04`](https://github.com/ZetaNumbers/wasm4-rs/commit/ceaee049373326d74f9fffe14f9b7d13e87cc69e))
     - bump crates versions ([`2c68e02`](https://github.com/ZetaNumbers/wasm4-rs/commit/2c68e023407205b7bb4f10a8111e9e78e368bbab))
     - add runtime creation functionality ([`7a1d011`](https://github.com/ZetaNumbers/wasm4-rs/commit/7a1d0114338f2f9c33580731ada2d348b9a5abbc))
