@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.0.3 (2022-01-02)
 
 This is the first working release of `wasm4` crate! You can add this crate
 as a dependency to your cartridge's code by specifying it in Cargo.toml:
@@ -67,7 +67,7 @@ Notice that this is not a library (`src/lib.rs`), but an executable (`src/main.r
 
 <csr-read-only-do-not-edit/>
 
- - 13 commits contributed to the release over the course of 18 calendar days.
+ - 14 commits contributed to the release over the course of 18 calendar days.
  - 6 commits where understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' where seen in commit messages
 
@@ -78,6 +78,7 @@ Notice that this is not a library (`src/lib.rs`), but an executable (`src/main.r
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - regenerate and adjust docs ([`fc71325`](https://github.com/ZetaNumbers/wasm4-rs/commit/fc71325e4a4b43f342828370c960357ac1d0f583))
     - copy example's source into wasm4 docs ([`74390f2`](https://github.com/ZetaNumbers/wasm4-rs/commit/74390f243edfeab213bc40e2ed7b12f008f1efec))
     - Release wasm4-sys v0.1.0, wasm4 v0.0.3 ([`9a8c498`](https://github.com/ZetaNumbers/wasm4-rs/commit/9a8c498c6ebff2e2a2520a74defaf407fc39f36f))
     - regenerate and adjust changelog ([`ceaee04`](https://github.com/ZetaNumbers/wasm4-rs/commit/ceaee049373326d74f9fffe14f9b7d13e87cc69e))
