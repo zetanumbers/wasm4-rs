@@ -1,2 +1,6 @@
 [workspace]
-members = ["wasm4", "wasm4-sys"]
+members = [
+  "wasm4",
+  "wasm4-sys",
+  "examples/count",
+]

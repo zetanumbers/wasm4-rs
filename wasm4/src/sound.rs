@@ -2,23 +2,17 @@ use crate::utils::OutOfDomainError;
 use core::mem;
 
 #[derive(PartialEq, Eq)]
-pub struct Resource(());
+pub struct Resource(pub(crate) ());
 
 impl Resource {
-    pub fn take() -> Option<Self> {
-        static mut SINGLETON: Option<Resource> = Some(Resource(()));
-
-        // SAFETY: wasm4 is single-threaded
-        unsafe { SINGLETON.take() }
-    }
-
     /// Plays a sound tone. Volume is between 0 and 100.
     pub fn tone(&self, frequency: LinearFrequency, duration: Duration, volume: u32, flags: Flags) {
-        // SAFETY: calling extern function, makes ownership assumptions useful
+        // SAFETY: calling extern function
         unsafe { wasm4_sys::tone(frequency.inner(), duration.inner(), volume, flags.inner()) }
     }
 
-    pub fn share(self) -> &'static Self {
+    /// Leak resource and return static reference. Expect no runtime overhead.
+    pub fn leak(self) -> &'static Self {
         &Resource(())
     }
 }
