@@ -1,0 +1,26 @@
+[alias]
+cart-build = "build --target wasm32-unknown-unknown --profile cartridge"
+cart-run = "run --target wasm32-unknown-unknown --profile cartridge"
+cart-doc = "doc --target wasm32-unknown-unknown --profile cartridge"
+
+cb = "cart-build"
+cr = "cart-run"
+cd = "cart-doc"
+
+[profile.cartridge]
+inherits = "release"
+opt-level = "z"
+lto = true
+
+[target.wasm32-unknown-unknown]
+runner = "w4 run"
+rustflags = [
+    # Import memory from WASM-4
+    "-C", "link-arg=--import-memory",
+    "-C", "link-arg=--initial-memory=65536",
+    "-C", "link-arg=--max-memory=65536",
+
+    # Reserve 8192 bytes of stack space, offset from 6560.
+    # Bump this value, 16-byte aligned, if the framebuffer gets corrupted.
+    "-C", "link-arg=-zstack-size=14752",
+]
