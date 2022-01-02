@@ -4,7 +4,7 @@ struct MyRuntime {
     count: i32,
 }
 
-// prints "counting..." ten times
+// prints "tick..." every second
 impl wasm4::Runtime for MyRuntime {
     fn start(_: wasm4::Resources) -> Self {
         MyRuntime { count: 0 }
