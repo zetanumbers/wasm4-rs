@@ -7,6 +7,7 @@ pub trait Runtime {
 
 pub struct Resources {
     pub sound: crate::sound::Resource,
+    pub framebuffer: crate::draw::Framebuffer,
 }
 
 #[doc(hidden)]
@@ -16,6 +17,7 @@ impl Resources {
     pub unsafe fn new() -> Self {
         Resources {
             sound: crate::sound::Resource(()),
+            framebuffer: crate::draw::Framebuffer::new_(),
         }
     }
 }
