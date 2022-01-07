@@ -1,1 +1,4 @@
-pub use crate::{draw, sound};
+pub use crate::{
+    draw::{self, Framebuffer},
+    sound,
+};
