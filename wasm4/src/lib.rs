@@ -30,9 +30,10 @@ pub mod draw;
 pub mod prelude;
 pub mod runtime;
 pub mod sound;
-pub mod utils;
+mod utils;
 
 pub use runtime::*;
+pub use utils::OutOfDomainError;
 pub use wasm4_sys as sys;
 
 pub fn trace(msg: &str) {
