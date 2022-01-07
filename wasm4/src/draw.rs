@@ -9,7 +9,7 @@ impl Framebuffer {
 
     pub const WIDTH: usize = 160;
     pub const HEIGHT: usize = 160;
-    pub const BYTE_LENGTH: usize = Self::WIDTH * Self::HEIGHT * 8 / 2;
+    pub const BYTE_LENGTH: usize = Self::WIDTH * Self::HEIGHT / 4;
 
     pub fn get(&self) -> &Cell<[u8; Self::BYTE_LENGTH]> {
         // SAFETY: WASM-4 is single-threaded
