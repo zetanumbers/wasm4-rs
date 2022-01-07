@@ -16,6 +16,11 @@ impl Framebuffer {
         unsafe { mem::transmute(wasm4_sys::FRAMEBUFFER) }
     }
 
+    pub fn as_cells(&self) -> &[Cell<u8>; Self::BYTE_LENGTH] {
+        // SAFETY: WASM-4 is single-threaded
+        unsafe { mem::transmute(wasm4_sys::FRAMEBUFFER) }
+    }
+
     pub fn line(&self, start: [i32; 2], end: [i32; 2]) {
         unsafe { wasm4_sys::line(start[0], start[1], end[0], end[0]) }
     }
