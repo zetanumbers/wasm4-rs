@@ -131,7 +131,7 @@ impl Sprite<[u8]> {
 
     /// Create a subview to the sprite. Does not perform in bounds checks.
     ///
-    /// ## Safety
+    /// # Safety
     ///
     /// Resulting subview should be inside of the bounds of the `Sprite`
     pub const unsafe fn view_unchecked<'a>(
