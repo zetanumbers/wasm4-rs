@@ -2,9 +2,9 @@ use crate::utils::OutOfDomainError;
 use core::mem;
 
 #[derive(PartialEq, Eq)]
-pub struct Resource(pub(crate) ());
+pub struct Audio(pub(crate) ());
 
-impl Resource {
+impl Audio {
     /// Plays a sound tone. Volume is between 0 and 100.
     pub fn tone(&self, frequency: LinearFrequency, duration: Duration, volume: u32, flags: Flags) {
         // SAFETY: calling extern function
@@ -13,7 +13,7 @@ impl Resource {
 
     /// Leak resource and return static reference. Expect no runtime overhead.
     pub fn leak(self) -> &'static Self {
-        &Resource(())
+        &Audio(())
     }
 }
 

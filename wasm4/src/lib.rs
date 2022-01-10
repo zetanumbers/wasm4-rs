@@ -27,13 +27,16 @@
 //! ```
 
 pub mod draw;
-pub mod prelude;
 pub mod runtime;
 pub mod sound;
 mod utils;
 
-pub use runtime::*;
-pub use utils::OutOfDomainError;
+pub use self::{
+    draw::{Framebuffer, Sprite},
+    runtime::*,
+    sound::Audio,
+    utils::OutOfDomainError,
+};
 pub use wasm4_sys as sys;
 
 pub fn trace(msg: &str) {
