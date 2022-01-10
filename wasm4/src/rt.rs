@@ -30,8 +30,8 @@ macro_rules! main {
         #[no_mangle]
         unsafe extern "C" fn start() {
             // SAFETY: This call is described inside the doc comments for `Resources::new()`
-            let res = unsafe { $crate::runtime::Resources::new() };
-            let rt = <$runtime as $crate::runtime::Runtime>::start(res);
+            let res = unsafe { $crate::rt::Resources::new() };
+            let rt = <$runtime as $crate::rt::Runtime>::start(res);
             // SAFETY: WASM-4 is single-threaded
             unsafe { RUNTIME = core::mem::MaybeUninit::new(rt) };
         }
@@ -40,7 +40,7 @@ macro_rules! main {
         unsafe extern "C" fn update() {
             // SAFETY: WASM-4 is single-threaded. `update()` function is called after start by WASM-4 runtime
             let rt = unsafe { RUNTIME.assume_init_mut() };
-            <$runtime as $crate::runtime::Runtime>::update(rt);
+            <$runtime as $crate::rt::Runtime>::update(rt);
         }
     };
 }

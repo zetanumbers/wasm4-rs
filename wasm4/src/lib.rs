@@ -4,39 +4,36 @@
 //! ```no_run
 //! #![no_main]
 //!
+//! use wasm4 as w4;
+//!
 //! struct MyRuntime {
 //!     count: i32,
 //! }
 //!
-//! // prints "tick..." every second
-//! impl wasm4::Runtime for MyRuntime {
-//!     fn start(_: wasm4::Resources) -> Self {
+//! // prints "tick" every second
+//! impl w4::rt::Runtime for MyRuntime {
+//!     fn start(_: w4::rt::Resources) -> Self {
 //!         MyRuntime { count: 0 }
 //!     }
 //!
 //!     fn update(&mut self) {
 //!         if self.count % 60 == 0 {
-//!             wasm4::trace("tick");
+//!             w4::trace("tick");
 //!             self.count = 0;
 //!         }
 //!         self.count += 1;
 //!     }
 //! }
 //!
-//! wasm4::main! { MyRuntime }
+//! w4::main! { MyRuntime }
 //! ```
 
 pub mod draw;
-pub mod runtime;
+pub mod rt;
 pub mod sound;
 mod utils;
 
-pub use self::{
-    draw::{Framebuffer, Sprite},
-    runtime::*,
-    sound::Audio,
-    utils::OutOfDomainError,
-};
+pub use self::utils::OutOfDomainError;
 pub use wasm4_sys as sys;
 
 pub fn trace(msg: &str) {
