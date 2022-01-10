@@ -52,7 +52,7 @@ impl Framebuffer {
 }
 
 #[derive(Clone, Copy)]
-pub struct Sprite<Bytes: ?Sized> {
+pub struct Sprite<Bytes: ?Sized = [u8]> {
     shape: [u32; 2],
     bpp: BitsPerPixel,
     bytes: Bytes,
@@ -82,7 +82,7 @@ impl<const N: usize> Sprite<[u8; N]> {
     }
 }
 
-impl Sprite<[u8]> {
+impl Sprite {
     /// Get the sprite's shape.
     pub const fn shape(&self) -> [u32; 2] {
         self.shape
@@ -165,14 +165,14 @@ bitflags::bitflags! {
 
 #[derive(Clone, Copy)]
 pub struct SpriteView<'a> {
-    sprite: &'a Sprite<[u8]>,
+    sprite: &'a Sprite,
     start: [u32; 2],
     shape: [u32; 2],
 }
 
 impl<'a> SpriteView<'a> {
     /// Get the view's underlying sprite.
-    pub fn sprite(&self) -> &Sprite<[u8]> {
+    pub fn sprite(&self) -> &Sprite {
         self.sprite
     }
 
@@ -191,7 +191,7 @@ pub trait Blit {
     fn blit(&self, start: [i32; 2], transform: BlitTransform, _framebuffer: &Framebuffer);
 }
 
-impl Blit for Sprite<[u8]> {
+impl Blit for Sprite {
     fn blit(&self, start: [i32; 2], transform: BlitTransform, _framebuffer: &Framebuffer) {
         let flags = self.bpp as u32 | transform.bits();
         unsafe {
