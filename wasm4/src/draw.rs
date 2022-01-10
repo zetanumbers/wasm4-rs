@@ -109,7 +109,7 @@ impl Sprite {
     }
 
     /// Create a subview to the sprite. Returns `None` if subview is out of bounds of the sprite.
-    pub const fn view<'a>(&'a self, start: [u32; 2], shape: [u32; 2]) -> Option<SpriteView<'a>> {
+    pub const fn view(&self, start: [u32; 2], shape: [u32; 2]) -> Option<SpriteView<'_>> {
         if lt_pairs(start, self.shape)
             && le_pairs(
                 match checked_add_pairs(start, shape) {
@@ -135,10 +135,10 @@ impl Sprite {
     ///
     /// Resulting subview should be inside of the bounds of the `Sprite`
     pub const unsafe fn view_unchecked<'a>(
-        &'a self,
+        &self,
         start: [u32; 2],
         shape: [u32; 2],
-    ) -> SpriteView<'a> {
+    ) -> SpriteView<'_> {
         SpriteView {
             sprite: self,
             start,
@@ -170,7 +170,7 @@ pub struct SpriteView<'a> {
     shape: [u32; 2],
 }
 
-impl<'a> SpriteView<'a> {
+impl SpriteView<'_> {
     /// Get the view's underlying sprite.
     pub fn sprite(&self) -> &Sprite {
         self.sprite
