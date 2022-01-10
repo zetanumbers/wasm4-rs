@@ -170,9 +170,9 @@ pub struct SpriteView<'a> {
     shape: [u32; 2],
 }
 
-impl SpriteView<'_> {
+impl<'a> SpriteView<'a> {
     /// Get the view's underlying sprite.
-    pub fn sprite(&self) -> &Sprite {
+    pub fn sprite(&self) -> &'a Sprite {
         self.sprite
     }
 
