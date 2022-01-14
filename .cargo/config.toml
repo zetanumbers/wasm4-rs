@@ -1,11 +1,14 @@
 [alias]
-cart-build = "build --target wasm32-unknown-unknown --profile cartridge"
-cart-run = "run --target wasm32-unknown-unknown --profile cartridge"
-cart-doc = "doc --target wasm32-unknown-unknown --profile cartridge"
+cart-build = "build --profile cartridge"
+cart-run = "run --profile cartridge"
+cart-doc = "doc --profile cartridge"
 
 cb = "cart-build"
 cr = "cart-run"
 cd = "cart-doc"
+
+[build]
+target = "wasm32-unknown-unknown"
 
 [profile.cartridge]
 inherits = "release"
