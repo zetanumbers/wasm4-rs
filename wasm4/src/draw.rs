@@ -1,6 +1,6 @@
 //! # Examples
 //!
-//! You can take a look at the result of this program at `TODO`.
+//! [See preview](https://raw.githubusercontent.com/ZetaNumbers/wasm4-rs/main/examples/sans/preview.png)
 //!
 //! ```ignore
 //! #![no_main]

@@ -7,7 +7,7 @@ struct SansRuntime {
 }
 
 // Displays sans.
-// You can take a look at the result of this program at `TODO`.
+// Preview is at: https://raw.githubusercontent.com/ZetaNumbers/wasm4-rs/main/examples/sans/preview.png
 impl w4::rt::Runtime for SansRuntime {
     fn start(res: w4::rt::Resources) -> Self {
         SansRuntime {
