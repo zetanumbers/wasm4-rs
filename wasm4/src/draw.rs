@@ -1,5 +1,48 @@
-use crate::utils::{checked_add_pairs, le_pairs, lt_pairs};
+//! # Examples
+//!
+//! You can take a look at the result of this program at `TODO`.
+//!
+//! ```ignore
+//! #![no_main]
+//!
+//! use wasm4 as w4;
+//!
+//! struct SansRuntime {
+//!     framebuffer: w4::draw::Framebuffer,
+//! }
+//!
+//! // displays sans
+//! impl w4::rt::Runtime for SansRuntime {
+//!     fn start(res: w4::rt::Resources) -> Self {
+//!         SansRuntime {
+//!             framebuffer: res.framebuffer,
+//!         }
+//!     }
+//!
+//!     fn update(&mut self) {
+//!         w4::include_sprites! {
+//!             // 0xa64902 is a background color (indexed 0)
+//!             // 0x000000 is a foreground color (indexed 1)
+//!             // every other color is added if needed
+//!             const PALETTE: _ = common_palette!(0xa64902, 0x000000);
+//!             // every image may contain at most 4 colors each (transparent included)
+//!             // all images may contain at most 4 color total (transparent excluded)
+//!             const SMILE: _ = include_sprite!("src/sans.png");
+//!             const TALK: _ = include_sprite!("src/talk.png");
+//!         };
+//!
+//!         self.framebuffer.replace_palette(PALETTE);
+//!         self.framebuffer.blit(&SMILE, [68, 32], <_>::default());
+//!         self.framebuffer.blit(&TALK, [0, 92], <_>::default());
+//!     }
+//! }
+//!
+//! w4::main! { SansRuntime }
+//! ```
+
 use core::{cell::Cell, marker::PhantomData, mem};
+
+pub use wasm4_common::draw::*;
 
 pub struct Framebuffer(PhantomData<*mut ()>);
 
@@ -49,109 +92,11 @@ impl Framebuffer {
     pub fn blit(&self, sprite: &impl Blit, start: [i32; 2], transform: BlitTransform) {
         sprite.blit(start, transform, self)
     }
-}
 
-#[derive(Clone, Copy)]
-pub struct Sprite<Bytes: ?Sized = [u8]> {
-    shape: [u32; 2],
-    bpp: BitsPerPixel,
-    bytes: Bytes,
-}
-
-impl<const N: usize> Sprite<[u8; N]> {
-    pub const fn from_bytes(bytes: [u8; N], shape: [u32; 2], bpp: BitsPerPixel) -> Option<Self> {
-        if match shape[0].checked_mul(shape[1]) {
-            Some(it) => it as usize,
-            None => return None,
-        } < match N.checked_shl(3 - bpp as u32) {
-            Some(it) => it,
-            None => return None,
-        } {
-            Some(Sprite { shape, bpp, bytes })
-        } else {
-            None
-        }
+    pub fn replace_palette(&self, palette: [Color; 4]) -> [Color; 4] {
+        // SAFETY: Color is `repr(transparent)` over u32
+        unsafe { (wasm4_sys::PALETTE as *mut [Color; 4]).replace(palette) }
     }
-
-    pub const unsafe fn from_bytes_unchecked(
-        bytes: [u8; N],
-        shape: [u32; 2],
-        bpp: BitsPerPixel,
-    ) -> Self {
-        Sprite { shape, bpp, bytes }
-    }
-}
-
-impl Sprite {
-    /// Get the sprite's shape.
-    pub const fn shape(&self) -> [u32; 2] {
-        self.shape
-    }
-
-    /// Get the sprite's width.
-    pub const fn width(&self) -> u32 {
-        self.shape[0]
-    }
-
-    /// Get the sprite's height.
-    pub const fn height(&self) -> u32 {
-        self.shape[1]
-    }
-
-    /// Get the sprite's bpp (bits per pixel).
-    pub const fn bpp(&self) -> BitsPerPixel {
-        self.bpp
-    }
-
-    /// Get a reference to the sprite's bytes.
-    pub const fn bytes(&self) -> &[u8] {
-        &self.bytes
-    }
-
-    /// Create a subview to the sprite. Returns `None` if subview is out of bounds of the sprite.
-    pub const fn view(&self, start: [u32; 2], shape: [u32; 2]) -> Option<SpriteView<'_>> {
-        if lt_pairs(start, self.shape)
-            && le_pairs(
-                match checked_add_pairs(start, shape) {
-                    Some(it) => it,
-                    None => return None,
-                },
-                self.shape,
-            )
-        {
-            Some(SpriteView {
-                sprite: self,
-                start,
-                shape,
-            })
-        } else {
-            None
-        }
-    }
-
-    /// Create a subview to the sprite. Does not perform in bounds checks.
-    ///
-    /// # Safety
-    ///
-    /// Resulting subview should be inside of the bounds of the `Sprite`
-    pub const unsafe fn view_unchecked<'a>(
-        &self,
-        start: [u32; 2],
-        shape: [u32; 2],
-    ) -> SpriteView<'_> {
-        SpriteView {
-            sprite: self,
-            start,
-            shape,
-        }
-    }
-}
-
-#[repr(u32)]
-#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-pub enum BitsPerPixel {
-    One,
-    Two,
 }
 
 bitflags::bitflags! {
@@ -163,65 +108,65 @@ bitflags::bitflags! {
     }
 }
 
-#[derive(Clone, Copy)]
-pub struct SpriteView<'a> {
-    sprite: &'a Sprite,
-    start: [u32; 2],
-    shape: [u32; 2],
-}
-
-impl<'a> SpriteView<'a> {
-    /// Get the view's underlying sprite.
-    pub fn sprite(&self) -> &'a Sprite {
-        self.sprite
-    }
-
-    /// Get the sprite view's start.
-    pub fn start(&self) -> [u32; 2] {
-        self.start
-    }
-
-    /// Get the sprite view's shape.
-    pub fn shape(&self) -> [u32; 2] {
-        self.shape
-    }
-}
-
 pub trait Blit {
     fn blit(&self, start: [i32; 2], transform: BlitTransform, _framebuffer: &Framebuffer);
 }
 
 impl Blit for Sprite {
     fn blit(&self, start: [i32; 2], transform: BlitTransform, _framebuffer: &Framebuffer) {
-        let flags = self.bpp as u32 | transform.bits();
+        let flags = self.bpp() as u32 | transform.bits();
+        let shape = self.shape();
         unsafe {
+            wasm4_sys::DRAW_COLORS.write(self.indices.into());
             wasm4_sys::blit(
-                self.bytes.as_ptr(),
+                self.bytes().as_ptr(),
                 start[0],
                 start[1],
-                self.shape[0],
-                self.shape[1],
+                shape[0],
+                shape[1],
                 flags,
             )
         }
     }
 }
 
+impl<const N: usize> Blit for Sprite<[u8; N]> {
+    #[inline(always)]
+    fn blit(&self, start: [i32; 2], transform: BlitTransform, _framebuffer: &Framebuffer) {
+        Sprite::<[u8]>::blit(self, start, transform, _framebuffer)
+    }
+}
+
 impl Blit for SpriteView<'_> {
     fn blit(&self, start: [i32; 2], transform: BlitTransform, _framebuffer: &Framebuffer) {
-        let flags = self.sprite.bpp as u32 | transform.bits();
+        let flags = self.sprite().bpp() as u32 | transform.bits();
+        let shape = self.shape();
+        let src_start = self.start();
+        let sprite = &self.sprite();
+
         unsafe {
+            wasm4_sys::DRAW_COLORS.write(self.sprite().indices.into());
             wasm4_sys::blitSub(
-                self.sprite.bytes.as_ptr(),
+                sprite.bytes().as_ptr(),
                 start[0],
                 start[1],
-                self.shape[0],
-                self.shape[1],
-                self.start[0],
-                self.start[1],
-                self.sprite.shape[0],
+                shape[0],
+                shape[1],
+                src_start[0],
+                src_start[1],
+                sprite.shape()[0],
                 flags,
             )
         }
     }
+}
+
+#[macro_export]
+macro_rules! include_sprites {
+    ( $( $tt:tt )* ) => {
+        $crate::__private::include_sprites_impl! {
+            package: $crate,
+            input: { $( $tt )* },
+        }
+    };
 }

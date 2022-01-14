@@ -2,5 +2,8 @@
 members = [
   "wasm4",
   "wasm4-sys",
+  "wasm4-impl",
+  "wasm4-common",
   "examples/ticking",
+  "examples/sans",
 ]

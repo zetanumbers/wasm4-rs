@@ -28,6 +28,9 @@
 //! w4::main! { MyRuntime }
 //! ```
 
+#[doc(hidden)]
+#[path = "private.rs"]
+pub mod __private;
 pub mod draw;
 pub mod rt;
 pub mod sound;
