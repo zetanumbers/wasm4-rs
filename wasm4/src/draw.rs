@@ -1,7 +1,5 @@
 //! # Examples
 //!
-//! [See preview](https://raw.githubusercontent.com/ZetaNumbers/wasm4-rs/main/examples/sans/preview.png)
-//!
 //! ```ignore
 //! #![no_main]
 //!
@@ -39,6 +37,8 @@
 //!
 //! w4::main! { SansRuntime }
 //! ```
+//!
+//! ![hey there kiddo](https://raw.githubusercontent.com/ZetaNumbers/wasm4-rs/00e582199ed13e59153b808126e4a5ab74267a31/examples/sans/preview.png "sans")
 
 use core::{cell::Cell, marker::PhantomData, mem};
 
