@@ -1,6 +1,6 @@
 [package]
 name = "wasm4-impl"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["Daria Sukhonina <dariasukhonina@gmail.com>"]
 license = "ISC"
 repository = "https://github.com/ZetaNumbers/wasm4-rs"
@@ -23,4 +23,4 @@ syn = { version = "1.0.85", features = ["extra-traits"] }
 
 [dependencies.wasm4-common]
 path = "../wasm4-common"
-version = "0.0.0"
+version = "^0.1.0"
