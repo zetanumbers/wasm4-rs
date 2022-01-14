@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Framebuffer support
+
 Now you are able to `include_spire!` from any image you have! Here's a small demo: 
 
 ```rust
