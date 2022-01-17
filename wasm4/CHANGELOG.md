@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.1.1 (2022-01-17)
+## 0.1.2 (2022-01-17)
 
 ### Commit Statistics
 
@@ -22,6 +22,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - bump versions ([`3ffbbb4`](https://github.com/ZetaNumbers/wasm4-rs/commit/3ffbbb4e106ce545fcf0b8a1fa36e40e3384afdc))
+</details>
+
+## 0.1.1 (2022-01-17)
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 2 commits contributed to the release.
+ - 1 commit where understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' where seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Release wasm4-sys v0.1.1, wasm4-impl v0.1.1, wasm4 v0.1.1 ([`9587707`](https://github.com/ZetaNumbers/wasm4-rs/commit/958770778205fcf22318ffb4a25dc359baa0513a))
     - fix license ([`7e163bd`](https://github.com/ZetaNumbers/wasm4-rs/commit/7e163bdedd898202b4009fd19a79e286592174a0))
 </details>
 
