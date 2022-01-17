@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 1 commit contributed to the release.
+ - 2 commits contributed to the release.
  - 1 commit where understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' where seen in commit messages
 
@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release wasm4-impl v0.1.2, wasm4 v0.1.2 ([`d833a30`](https://github.com/ZetaNumbers/wasm4-rs/commit/d833a3084f6eb490fc9cff7f10e0e37696cdf0e2))
     - bump versions ([`3ffbbb4`](https://github.com/ZetaNumbers/wasm4-rs/commit/3ffbbb4e106ce545fcf0b8a1fa36e40e3384afdc))
 </details>
 
