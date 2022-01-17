@@ -2,7 +2,7 @@
 name = "wasm4"
 version = "0.1.0"
 authors = ["Daria Sukhonina <dariasukhonina@gmail.com>"]
-license = "ISC"
+license = "MIT"
 repository = "https://github.com/ZetaNumbers/wasm4-rs"
 description = "WASM-4 bindings for Rust"
 keywords = ["wasm-4", "wasm4"]

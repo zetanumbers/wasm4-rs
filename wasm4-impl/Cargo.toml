@@ -2,7 +2,7 @@
 name = "wasm4-impl"
 version = "0.1.0"
 authors = ["Daria Sukhonina <dariasukhonina@gmail.com>"]
-license = "ISC"
+license = "MIT"
 repository = "https://github.com/ZetaNumbers/wasm4-rs"
 description = "procedural macro implementations for WASM-4 bindings"
 keywords = ["wasm-4", "wasm4"]
