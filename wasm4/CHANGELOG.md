@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.1.1 (2022-01-17)
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 1 commit contributed to the release.
+ - 1 commit where understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' where seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - fix license ([`7e163bd`](https://github.com/ZetaNumbers/wasm4-rs/commit/7e163bdedd898202b4009fd19a79e286592174a0))
+</details>
+
 ## 0.1.0 (2022-01-14)
 
 ### Framebuffer support
@@ -91,7 +111,7 @@ Other framebuffer functionality also is added (`oval`, `text` and others).
 
 <csr-read-only-do-not-edit/>
 
- - 20 commits contributed to the release.
+ - 21 commits contributed to the release.
  - 20 commits where understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' where seen in commit messages
 
@@ -102,6 +122,7 @@ Other framebuffer functionality also is added (`oval`, `text` and others).
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release wasm4 v0.1.0 ([`dddc3a8`](https://github.com/ZetaNumbers/wasm4-rs/commit/dddc3a86365bf86473f81e36936b4ace3ffdf4b5))
     - add named header into a changelog ([`c3651cf`](https://github.com/ZetaNumbers/wasm4-rs/commit/c3651cfe79df786726597ee17fb73c325cc77869))
     - update changelogs ([`a0f0eb4`](https://github.com/ZetaNumbers/wasm4-rs/commit/a0f0eb4c388e0b91a9edda291aa61f10e3388229))
     - embed preview image ([`c55457c`](https://github.com/ZetaNumbers/wasm4-rs/commit/c55457c26fa610b0556fb08a9f7e4ca02c96059f))

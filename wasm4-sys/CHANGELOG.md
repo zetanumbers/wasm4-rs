@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.1.1 (2022-01-17)
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 1 commit contributed to the release.
+ - 1 commit where understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' where seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - fix license ([`7e163bd`](https://github.com/ZetaNumbers/wasm4-rs/commit/7e163bdedd898202b4009fd19a79e286592174a0))
+</details>
+
 ## 0.1.0 (2022-01-02)
 
 ### Documentation
@@ -20,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 8 commits contributed to the release over the course of 18 calendar days.
+ - 9 commits contributed to the release over the course of 18 calendar days.
  - 4 commits where understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' where seen in commit messages
 
@@ -31,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release wasm4-sys v0.1.0, wasm4 v0.0.3 ([`9a8c498`](https://github.com/ZetaNumbers/wasm4-rs/commit/9a8c498c6ebff2e2a2520a74defaf407fc39f36f))
     - regenerate and adjust changelog ([`ceaee04`](https://github.com/ZetaNumbers/wasm4-rs/commit/ceaee049373326d74f9fffe14f9b7d13e87cc69e))
     - bump crates versions ([`2c68e02`](https://github.com/ZetaNumbers/wasm4-rs/commit/2c68e023407205b7bb4f10a8111e9e78e368bbab))
     - remove `libc` dependency ([`6ced143`](https://github.com/ZetaNumbers/wasm4-rs/commit/6ced143e05815ebe858f1d8c20b4ac035f165c6c))
