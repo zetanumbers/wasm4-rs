@@ -66,7 +66,7 @@ impl Framebuffer {
     }
 
     pub fn line(&self, start: [i32; 2], end: [i32; 2]) {
-        unsafe { wasm4_sys::line(start[0], start[1], end[0], end[0]) }
+        unsafe { wasm4_sys::line(start[0], start[1], end[0], end[1]) }
     }
 
     pub fn hline(&self, start: [i32; 2], len: u32) {
