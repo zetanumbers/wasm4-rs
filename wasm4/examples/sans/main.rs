@@ -23,8 +23,9 @@ impl w4::rt::Runtime for SansRuntime {
             const PALETTE: _ = common_palette!(0xa64902, 0x000000);
             // every image may contain at most 4 colors each (transparent included)
             // all images may contain at most 4 color total (transparent excluded)
-            const SMILE: _ = include_sprite!("src/sans.png");
-            const TALK: _ = include_sprite!("src/talk.png");
+            // paths are relative to your Cargo.toml manifest
+            const SMILE: _ = include_sprite!("examples/sans/sans.png");
+            const TALK: _ = include_sprite!("examples/sans/talk.png");
         };
 
         self.framebuffer.replace_palette(PALETTE);
