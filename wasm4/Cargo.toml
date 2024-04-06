@@ -43,4 +43,3 @@ crate_type = ["cdylib"]
 all-features = true
 default-target = "wasm32-unknown-unknown"
 targets = []
-rustdoc-args = ["--cfg", "docsrs"]

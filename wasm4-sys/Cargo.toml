@@ -8,3 +8,8 @@ description = "Raw WASM-4 bindings for Rust, used internally wasm4-rs"
 keywords = ["wasm-4", "wasm4"]
 categories = ["external-ffi-bindings", "wasm"]
 edition = "2021"
+
+[package.metadata.docs.rs]
+all-features = true
+default-target = "wasm32-unknown-unknown"
+targets = []

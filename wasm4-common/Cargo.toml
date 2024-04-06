@@ -8,4 +8,7 @@ description = "Functionality used from proc_macro and regular libraries for WASM
 keywords = ["wasm-4", "wasm4"]
 edition = "2021"
 
-[dependencies]
+[package.metadata.docs.rs]
+all-features = true
+default-target = "wasm32-unknown-unknown"
+targets = []
