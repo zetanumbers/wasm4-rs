@@ -1,5 +1,3 @@
-#![no_main]
-
 use wasm4 as w4;
 
 struct MyRuntime {

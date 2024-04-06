@@ -33,6 +33,11 @@ optional = true
 [[example]]
 name = "sans"
 required-features = ["include-sprites"]
+crate_type = ["cdylib"]
+
+[[example]]
+name = "ticking"
+crate_type = ["cdylib"]
 
 [package.metadata.docs.rs]
 all-features = true
