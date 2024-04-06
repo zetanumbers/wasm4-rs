@@ -11,6 +11,7 @@ readme = "../README.md"
 edition = "2021"
 
 [features]
+std = []
 include-sprites = ["dep:wasm4-impl"]
 
 [dependencies]

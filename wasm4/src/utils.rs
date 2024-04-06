@@ -9,4 +9,5 @@ impl fmt::Display for OutOfDomainError {
     }
 }
 
+#[cfg(feature = "std")]
 impl std::error::Error for OutOfDomainError {}
