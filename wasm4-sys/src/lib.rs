@@ -18,6 +18,7 @@
 //! However all of that assumes you or any dependency do not use any other bindings
 //! except for [`wasm4`](https://crates.io/crates/wasm4) and this [`crate`]
 //! (or uses them while respecting assumptions mentioned above, but this is discouraged).
+#![no_std]
 
 use core::ffi::c_void;
 
