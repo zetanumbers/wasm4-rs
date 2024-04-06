@@ -15,7 +15,7 @@ inherits = "release"
 opt-level = "z"
 lto = true
 
-[target.wasm32-unknown-unknown]
+[target.'cfg(target_family = "wasm")']
 runner = "w4 run"
 rustflags = [
     # Import memory from WASM-4
