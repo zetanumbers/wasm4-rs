@@ -33,3 +33,9 @@ optional = true
 [[example]]
 name = "sans"
 required-features = ["include-sprites"]
+
+[package.metadata.docs.rs]
+all-features = true
+default-target = "wasm32-unknown-unknown"
+targets = []
+rustdoc-args = ["--cfg", "docsrs"]
