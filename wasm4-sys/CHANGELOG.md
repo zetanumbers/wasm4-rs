@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 2 commits contributed to the release.
+ - 3 commits contributed to the release.
  - 810 days passed between releases.
  - 2 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 0 issues like '(#ID)' were seen in commit messages
@@ -31,11 +31,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details><summary>view details</summary>
 
  * **Uncategorized**
+    - Release wasm4-sys v0.1.2 ([`3fd2b4b`](https://github.com/zetanumbers/wasm4-rs/commit/3fd2b4bdd62729b25876391355be139314e43f85))
     - Change wasm32-unknown-unknown to be the default target for docs.rs ([`5baa652`](https://github.com/zetanumbers/wasm4-rs/commit/5baa652f0e98c17df295db8043bde90a3766f84a))
     - Add `no_std` support ([`ff7957d`](https://github.com/zetanumbers/wasm4-rs/commit/ff7957dfe5065a0e738ec2feb7e8e305fe2e30a5))
 </details>
 
 ## 0.1.1 (2022-01-17)
+
+<csr-id-7e163bdedd898202b4009fd19a79e286592174a0/>
 
 ### Chore
 
@@ -62,6 +65,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 </details>
 
 ## 0.1.0 (2022-01-02)
+
+<csr-id-2c68e023407205b7bb4f10a8111e9e78e368bbab/>
 
 ### Chore
 
