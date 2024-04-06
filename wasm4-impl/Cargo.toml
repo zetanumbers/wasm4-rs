@@ -24,4 +24,4 @@ syn = { version = "1.0.85", features = ["extra-traits", "parsing", "proc-macro"]
 
 [dependencies.wasm4-common]
 path = "../wasm4-common"
-version = "0.1.2"
+version = "0.1.3"
