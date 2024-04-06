@@ -18,39 +18,39 @@ impl Parse for Input {
 
 #[derive(Clone)]
 pub struct PackageField {
-    pub package_token: kw::package,
-    pub column: syn::Token![:],
+    pub _package_token: kw::package,
+    pub _column: syn::Token![:],
     pub package_name: syn::Ident,
-    pub comma: syn::Token![,],
+    pub _comma: syn::Token![,],
 }
 
 impl Parse for PackageField {
     fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
         Ok(PackageField {
-            package_token: input.parse()?,
-            column: input.parse()?,
+            _package_token: input.parse()?,
+            _column: input.parse()?,
             package_name: input.parse()?,
-            comma: input.parse()?,
+            _comma: input.parse()?,
         })
     }
 }
 
 #[derive(Clone)]
 pub struct InputField {
-    pub input_token: kw::input,
-    pub column: syn::Token![:],
-    pub brace: syn::token::Brace,
+    pub _input_token: kw::input,
+    pub _column: syn::Token![:],
+    pub _brace: syn::token::Brace,
     pub consts: Vec<ItemConst>,
-    pub comma: syn::Token![,],
+    pub _comma: syn::Token![,],
 }
 
 impl Parse for InputField {
     fn parse(input: syn::parse::ParseStream) -> syn::Result<Self> {
         let content;
         Ok(InputField {
-            input_token: input.parse()?,
-            column: input.parse()?,
-            brace: syn::braced!(content in input),
+            _input_token: input.parse()?,
+            _column: input.parse()?,
+            _brace: syn::braced!(content in input),
             consts: {
                 let mut consts = Vec::new();
                 while !content.is_empty() {
@@ -58,7 +58,7 @@ impl Parse for InputField {
                 }
                 consts
             },
-            comma: input.parse()?,
+            _comma: input.parse()?,
         })
     }
 }
@@ -144,8 +144,8 @@ impl Parse for Expr {
 #[derive(Clone)]
 pub struct CommonPaletteExpr {
     pub name_token: kw::common_palette,
-    pub bang_token: syn::token::Bang,
-    pub paren_token: syn::token::Paren,
+    pub _bang_token: syn::token::Bang,
+    pub _paren_token: syn::token::Paren,
     pub colors: Punctuated<Rgb, syn::token::Comma>,
 }
 
@@ -154,8 +154,8 @@ impl Parse for CommonPaletteExpr {
         let content;
         Ok(CommonPaletteExpr {
             name_token: input.parse()?,
-            bang_token: input.parse()?,
-            paren_token: syn::parenthesized!(content in input),
+            _bang_token: input.parse()?,
+            _paren_token: syn::parenthesized!(content in input),
             colors: {
                 let mut out = Punctuated::new();
                 loop {
@@ -222,7 +222,6 @@ impl ToTokens for IncludeSpriteExpr {
 
 #[derive(Copy, Clone)]
 pub struct Rgb {
-    pub span: proc_macro2::Span,
     pub value: u32,
 }
 
@@ -237,7 +236,7 @@ impl Parse for Rgb {
             ));
         }
         let value = lit.base10_parse()?;
-        Ok(Rgb { span, value })
+        Ok(Rgb { value })
     }
 }
 

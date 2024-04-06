@@ -9,7 +9,6 @@ use once_cell::unsync::OnceCell;
 use std::{collections::HashMap, mem, path::PathBuf};
 use wasm4_common::draw::{BitsPerPixel, DrawIndex, DrawIndices};
 
-pub use parse::Input;
 pub use to_tokens::Output;
 
 type Sprite = wasm4_common::draw::Sprite<Vec<u8>>;
@@ -24,12 +23,15 @@ pub fn implementation(input: parse::Input) -> syn::Result<Output> {
     for item in input.input.consts {
         match &item.expr {
             parse::Expr::IncludeSprite(include_sprite) => {
-                if let Some(_) = image_paths.insert(
-                    include_sprite.path.value(),
-                    item.clone().map_expr(|_| include_sprite.clone()),
-                ) {
+                if image_paths
+                    .insert(
+                        include_sprite.path.value(),
+                        item.clone().map_expr(|_| include_sprite.clone()),
+                    )
+                    .is_some()
+                {
                     return Err(syn::Error::new_spanned(
-                        &include_sprite,
+                        include_sprite,
                         "detected image duplication",
                     ));
                 }
@@ -68,7 +70,7 @@ pub fn implementation(input: parse::Input) -> syn::Result<Output> {
 
             (|| -> anyhow::Result<_> {
                 let fullpath = pkg_root.join(&path);
-                let img = ImageReader::open(&fullpath)
+                let img = ImageReader::open(fullpath)
                     .with_context(|| format!("could not open {:?} file", &path))?
                     .decode()
                     .with_context(|| format!("could not decode {:?} file", &path))?
@@ -86,7 +88,7 @@ pub fn implementation(input: parse::Input) -> syn::Result<Output> {
                             match palette
                                 .iter()
                                 .enumerate()
-                                .find_map(|(i, c)| (*c == color).then(|| i))
+                                .find_map(|(i, c)| (*c == color).then_some(i))
                             {
                                 Some(i) => i,
                                 None => {
@@ -111,7 +113,7 @@ pub fn implementation(input: parse::Input) -> syn::Result<Output> {
                     let i = match indices
                         .iter()
                         .enumerate()
-                        .find_map(|(n, i)| (*i == idx).then(|| n))
+                        .find_map(|(n, i)| (*i == idx).then_some(n))
                     {
                         Some(i) => i,
                         None => {
