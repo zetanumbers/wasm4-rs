@@ -1,7 +1,7 @@
 [alias]
 cart-build = "build --profile cartridge"
 cart-run = "run --profile cartridge"
-cart-doc = "doc --profile cartridge"
+cart-doc = "doc --profile cartridge --all-features"
 
 cb = "cart-build"
 cr = "cart-run"

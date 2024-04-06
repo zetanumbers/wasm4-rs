@@ -10,6 +10,7 @@ edition = "2021"
 
 [lib]
 proc-macro = true
+doc = false
 
 [dependencies]
 anyhow = "1.0.52"

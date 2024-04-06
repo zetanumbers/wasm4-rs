@@ -162,6 +162,7 @@ impl Blit for SpriteView<'_> {
 }
 
 #[macro_export]
+#[cfg(feature = "include-sprites")]
 macro_rules! include_sprites {
     ( $( $tt:tt )* ) => {
         $crate::__private::include_sprites_impl! {
