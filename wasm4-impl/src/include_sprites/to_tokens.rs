@@ -39,7 +39,7 @@ impl ToTokens for Output {
             let palette = palette.map(|c| c.0);
             let expr = quote_spanned! { expr.name_token.span => [ #( #color_ty(#palette) ),* ] };
 
-            attrs.into_iter().for_each(|attr| attr.to_tokens(tokens));
+            attrs.iter().for_each(|attr| attr.to_tokens(tokens));
             vis.to_tokens(tokens);
             const_token.to_tokens(tokens);
             ident.to_tokens(tokens);
@@ -88,7 +88,7 @@ impl ToTokens for Output {
                 }
             };
 
-            attrs.into_iter().for_each(|attr| attr.to_tokens(tokens));
+            attrs.iter().for_each(|attr| attr.to_tokens(tokens));
             vis.to_tokens(tokens);
             const_token.to_tokens(tokens);
             ident.to_tokens(tokens);

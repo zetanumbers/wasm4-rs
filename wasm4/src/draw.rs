@@ -40,7 +40,7 @@
 //!
 //! ![hey there kiddo](https://raw.githubusercontent.com/ZetaNumbers/wasm4-rs/00e582199ed13e59153b808126e4a5ab74267a31/examples/sans/preview.png "sans")
 
-use core::{cell::Cell, marker::PhantomData, mem};
+use core::{cell::Cell, marker::PhantomData};
 
 pub use wasm4_common::draw::*;
 
@@ -57,12 +57,12 @@ impl Framebuffer {
 
     pub fn as_cell(&self) -> &Cell<[u8; Self::BYTE_LENGTH]> {
         // SAFETY: WASM-4 is single-threaded
-        unsafe { mem::transmute(wasm4_sys::FRAMEBUFFER) }
+        unsafe { &*(wasm4_sys::FRAMEBUFFER.cast::<Cell<[u8; 6400]>>()) }
     }
 
     pub fn as_cells(&self) -> &[Cell<u8>; Self::BYTE_LENGTH] {
         // SAFETY: WASM-4 is single-threaded
-        unsafe { mem::transmute(wasm4_sys::FRAMEBUFFER) }
+        unsafe { &*(wasm4_sys::FRAMEBUFFER.cast::<[Cell<u8>; 6400]>()) }
     }
 
     pub fn line(&self, start: [i32; 2], end: [i32; 2]) {

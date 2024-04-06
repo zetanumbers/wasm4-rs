@@ -7,6 +7,11 @@ pub struct Sprite<Bytes: ?Sized = [u8]> {
 }
 
 impl<const N: usize> Sprite<[u8; N]> {
+    /// Create a sprite from an array of bytes and other metadata.
+    ///
+    /// # Errors
+    ///
+    /// Returns `None` if bytes wont fit the given sprite `shape` and `bpp`.
     pub const fn from_byte_array(
         bytes: [u8; N],
         shape: [u32; 2],
@@ -14,7 +19,7 @@ impl<const N: usize> Sprite<[u8; N]> {
         draw_colors: DrawIndices,
     ) -> Option<Self> {
         let resolution = shape[0].checked_mul(shape[1]);
-        let capacity = N.checked_mul(1 << 3 - bpp as u32);
+        let capacity = N.checked_mul(1 << (3 - bpp as u32));
 
         match (resolution, capacity) {
             // SAFETY: calling unsafe function after the check
@@ -27,6 +32,15 @@ impl<const N: usize> Sprite<[u8; N]> {
 }
 
 impl<Bytes> Sprite<Bytes> {
+    /// Create a sprite from an array of bytes and other metadata without a
+    /// safety check.
+    ///
+    /// # Safety
+    ///
+    /// Invalidates type's safety invariant [`Sprite::from_byte_array`] would
+    /// return `None`. It wont error if safety requirement is violated during
+    /// const evaluation, instead resulting in undefined behavior when returned
+    /// object's methods are called.
     pub const unsafe fn from_bytes_unchecked(
         bytes: Bytes,
         shape: [u32; 2],
@@ -50,7 +64,7 @@ impl<Bytes: AsRef<[u8]>> Sprite<Bytes> {
         draw_colors: DrawIndices,
     ) -> Option<Self> {
         let resolution = shape[0].checked_mul(shape[1]);
-        let capacity = bytes.as_ref().len().checked_mul(1 << 3 - bpp as u32);
+        let capacity = bytes.as_ref().len().checked_mul(1 << (3 - bpp as u32));
 
         match (resolution, capacity) {
             // SAFETY: calling unsafe function after the check
@@ -112,11 +126,7 @@ impl Sprite {
     /// # Safety
     ///
     /// Resulting subview should be inside of the bounds of the `Sprite`
-    pub const unsafe fn view_unchecked<'a>(
-        &self,
-        start: [u32; 2],
-        shape: [u32; 2],
-    ) -> SpriteView<'_> {
+    pub const unsafe fn view_unchecked(&self, start: [u32; 2], shape: [u32; 2]) -> SpriteView<'_> {
         SpriteView {
             sprite: self,
             start,
@@ -182,6 +192,12 @@ impl DrawIndices {
         }
     }
 
+    /// Creates a [`DrawIndices`] value from `u16`.
+    ///
+    /// # Safety
+    ///
+    /// Every four bits of `inner` argument must contain value in range `0..=4`
+    /// to safely create [`DrawIndex`] value using [`DrawIndex::new_unchecked`]
     pub const unsafe fn from_u16_unchecked(inner: u16) -> Self {
         DrawIndices(inner)
     }
@@ -197,9 +213,10 @@ impl From<DrawIndices> for u16 {
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Default)]
 #[repr(u16)]
 pub enum DrawIndex {
+    #[default]
     Transparent,
     First,
     Second,
@@ -216,14 +233,13 @@ impl DrawIndex {
         }
     }
 
+    /// Create [`DrawIndex`] from u16.
+    ///
+    /// # Safety
+    ///
+    /// `index` value must be in range `0..=4`.
     pub const unsafe fn new_unchecked(index: u16) -> Self {
         core::mem::transmute(index)
-    }
-}
-
-impl Default for DrawIndex {
-    fn default() -> Self {
-        DrawIndex::Transparent
     }
 }
 
