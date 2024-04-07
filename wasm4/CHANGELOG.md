@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [wasm4-v0.2.0] - 2024-04-07
 
 ### Bug Fixes
 
@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 - Document unsafe functions and fix clippy warnings
 - Docs.rs prints required features
 - Include examples into documentation with `include_str!` macro
-- Change `wasm32-unknown-unknown` to be the default target for docs.rs
+- Change wasm32-unknown-unknown to be the default target for docs.rs
 
 
 ### Features
@@ -23,6 +23,15 @@ All notable changes to this project will be documented in this file.
   - **BREAKING**: to use `include_sprites!` macro you have to enable `include-sprites` feature inside of the cargo manifest
 - Add `no_std` support and `std` feature
   - **BREAKING**: wasm4 now gates `impl std::error::Error for OutOfDomainError` under disabled by default `std` feature
+
+
+### Miscellaneous Tasks
+
+- *(release)* Regenerate changelogs with git-cliff
+- *(release)* Bump wasm4-sys dependency to 0.1.3
+- *(release)* Bump wasm4-common dependency to 0.1.4
+- *(release)* Bump wasm4-impl patch version
+- *(release)* Exclude example PNG images from the package
 
 
 ### Build
