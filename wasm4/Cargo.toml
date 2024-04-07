@@ -8,6 +8,7 @@ description = "WASM-4 bindings for Rust"
 keywords = ["wasm-4", "wasm4"]
 categories = ["api-bindings", "wasm"]
 readme = "../README.md"
+exclude = ["**/*.png"]
 edition = "2021"
 
 [features]
