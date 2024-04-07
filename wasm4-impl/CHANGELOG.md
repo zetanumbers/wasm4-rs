@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [unreleased]
+## [wasm4-impl-v0.1.3] - 2024-04-07
 
 ### Documentation
 
@@ -14,6 +14,9 @@ All notable changes to this project will be documented in this file.
 
 - *(release)* Update `wasm-impl` local dependencies
 - *(release)* Update changelog
+- *(release)* Regenerate changelogs with git-cliff
+- *(release)* Bump wasm4-impl patch version
+- *(release)* Bump wasm4-common dependency to 0.1.4
 
 
 ### Refactor
