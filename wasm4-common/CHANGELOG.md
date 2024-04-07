@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [wasm4-common-v0.1.4] - 2024-04-07
+
+### Miscellaneous Tasks
+
+- *(release)* Regenerate changelogs with git-cliff
+
+
 ## [wasm4-common-v0.1.3] - 2024-04-06
 
 ### Documentation
